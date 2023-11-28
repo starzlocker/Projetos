@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="O açougue Bumba Meu Boi é o mais tradicional de São Paulo, servindo com qualidade desde 1501!">
+    <title>Açougue Bumba Meu Boi</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/e2edc3d57c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-social">
+            <a href="https://pt-br.facebook.com/" target="_blank"><i class="fa-brands fa-facebook blue"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube red"></i></a>
+        </div>
+
+        <div class="header-title">
+
+            <h1>Bumba meu Boi</h1>
+
+            <img src="midia/logo-old.svg" alt="Uma ilustração do rosto de um boi" title="Bumba meu Boi">
+
+        </div>
+
+        <div class="header-nav-desktp">
+            <ul class="nav-links">
+                <a class="scroll" href="#destaques"><li>Destaques</li></a>
+                <hr class="list-line">
+                <a class="scroll" href="#acougue"><li>Açougue</li></a>
+                <hr class="list-line">
+                <a class="scroll" href="#sobre"><li>Sobre</li></a>
+                <hr class="list-line">
+                <a class="scroll" href="#footer">
+                    <li>Endereço</li>
+                </a>
+                
+
+
+            </ul>
+        </div>
+
+        <div class="header-nav">
+
+            <div id="header-openbtn" class="header-menu-button-container btn">
+
+                <div class="header-menu-button"></div>
+
+            </div>
+
+            <nav class="header-menu">
+
+                <div class="menu-head">
+                    
+                    <div
+                    id="header-closebtn" class="header-menu-button-container btn">
+                        <div class="header-menu-button"></div>
+                    </div>
+                </div>
+
+                <ul class="nav-links">
+                    <a class="scroll" href="#destaques"><li>Destaques</li></a>
+                    <hr class="list-line">
+                    <a class="scroll" href="#acougue"><li>Açougue</li></a>
+                    <hr class="list-line">
+                    <a class="scroll" href="#sobre"><li>Sobre nós</li></a>
+                    <hr class="list-line">
+                    <a class="scroll" href="#footer">
+                        <li>Endereço</li>
+                    </a>
+                    <hr class="list-line">
+                </ul>
+
+            </nav>
+
+            <div class="modal"></div>
+
+        </div>
+    </header>
+    <main>
+        <section id="destaques">
+
+            <h2 class="center">- Destaques -</h2>
+            <div class="slide-container">
+                <div class="box-fill">                    
+                    <div class="point active" id="pointA"></div>
+                    <div class="point" id="pointB"></div>
+                    <div class="point" id="pointC"></div>
+            </div>
+                <div class="box main-box">
+
+                        <img src="midia/feat-meat.jpg" alt="Uma costela suculenta com labaredas de fogo">
+            
+                        <div class="info">
+                            <h3 class="center">Sabor e Qualidade</h3>
+                            <hr>
+                            <p>
+                                Os cortes mais suculentos e saborosos, perfeitos para tornar o seu churrasco inesquecível.
+                            </p>
+                        </div>
+                </div>
+                <div class="box right-box">
+                    <img src="midia/feat-butchers.jpg" alt="Uma costela suculenta com labaredas de fogo">
+                    <div class="info">
+                        <h3 class="center">Cortes Frescos Sempre</h3>
+                        <hr>
+                        <p>Com a alta rotatividade do nosso negócio, garantimos cortes frescos para nossos clientes.</p>
+                    </div>
+                </div>
+                <div class="box left-box">
+                    <img src="midia/feat-butcher.jpg" alt="Uma costela suculenta com labaredas de fogo">
+                    <div class="info">
+                        <h3 class="center">Conheça nossa linha Black</h3>
+                        <hr>
+                        <p>Conheça nossos cortes <em>especiais</em>, feitos para os exigentes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-hr">
+
+        <section id="acougue">
+            <h2 class="center">- Açougue -</h2>
+            <section id="bovinos">
+                <div class="section-bar">
+                    <div class="circle">
+                        <img src="midia/meat.svg" alt="Ilustração de um bife" class="section-icon">
+                        <div class="circle-fill"></div>
+                    </div>
+                    <h3 class="section-title">Bovinos</h3>
+                    <div class="bar-fill"></div>
+                </div>
+                <div class="item-container">
+
+                    <div class="button-container">
+                        <button class="button" id="previous"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="button" id="next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="avinos">
+                <div class="section-bar">
+                    <div class="circle">
+                        <img src="midia/chicken-leg-chicken-svgrepo-com.svg" alt="Ilustração de um coxa de frango assada" class="section-icon">
+                        <div class="circle-fill"></div>
+                    </div>
+                    <h3 class="section-title">Avínos</h3>
+                    <div class="bar-fill"></div>
+                </div>
+                <div class="item-container">
+
+                    <div class="button-container">
+                        <button class="button" id="previous"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="button" id="next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>            
+                </div>
+            </section>
+
+
+            <section id="suinos">
+                <div class="section-bar">
+                    <div class="circle">
+                        <img src="midia/sausage-svgrepo-com.svg" alt="Ilustração de linguiças de porco" class="section-icon">
+                        <div class="circle-fill"></div>
+                    </div>
+                    <h3 class="section-title">Suínos</h3>
+                    <div class="bar-fill"></div>
+                </div>
+                <div class="item-container">
+
+                    <div class="button-container">
+                        <button class="button" id="previous"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="button" id="next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div> 
+                </div>
+            </section>
+
+
+            <section id="peixaria">
+                <div class="section-bar">
+                    <div class="circle">
+                        <img src="midia/fishes-fish-svgrepo-com.svg" alt="Ilustração de peixes" class="section-icon">
+                        <div class="circle-fill"></div>
+                    </div>
+                    <h3 class="section-title">Peixaria</h3>
+                    <div class="bar-fill"></div>
+                </div>
+                <div class="item-container">
+
+                    <div class="button-container">
+                        <button class="button" id="previous"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="button" id="next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                                  
+                </div>
+            </section>
+        </section>
+
+            <hr class="section-hr">
+
+        <section id="sobre">
+            <h2 class="center">- Sobre -</h2>
+            <div class="content-container">
+                <div class="text">
+                    <p>O açougue Bumba Meu Boi é um estabelecimento de renome, localizado em Valinhos, interior de São Paulo. Fundado em 1997 pelo Seu Manoel, o açougue conquistou os moradores com sua qualidade e bons preços. O sucesso foi tanto que logo foram abertas duas novas unidades, uma na cidade de Campinas e outra em Indaiatuba. 
+                </p>
+                <p>Seu Manoel administra as 3 unidades com seus filhos, Pedro e Rafael. </p>
+                </div>
+                <div class="box">
+                    <img src="midia/pexels-mark-stebnicki-7163987.jpg" alt="Um dos nossos frigoríficos">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <div class="info">
+            <h2>Bumba Meu Boi</h2>
+            <hr class="section-hr">
+            <h3>Horário de Funcionamento</h3>
+                <p>Segunda à Sábado, das 7h às 17h</p>
+            <h3>Endereços</h3>
+                <h4>Unidade Valinhos</h4>
+                <p>
+                    <a href="https://maps.app.goo.gl/XYf3BujLAnKsD7RV7" target="_blank">
+                        Av. dos Esportes, 1322<br>
+                        Centro, Valinhos/SP
+                    </a>
+                </p>
+                <h4>Unidade Campinas</h4>
+                <p>
+                    <a href="https://maps.app.goo.gl/uCQDZndjrkx2cNbE9">
+                        Av. Marechal Carmona, 32<br>
+                        Centro, Campinas/SP
+                    </a>
+                </p>
+                <h4>Unidade Indaiatuba</h4>
+                <p>
+                    <a href="https://maps.app.goo.gl/WCWeVaFgnRgSWaiD9">
+                        Av. Itororó, 1490<br>
+                        Cidade Nova, Indaiatuba/SP
+                    </a>
+                </p>
+            <h3>Telefone</h3>
+                <p>
+                    Fixo: (019) 1234-1234<br>
+                    WhatsApp: (019) 91234-1234
+                </p>
+            
+            <div class="social">
+                <a href="https://pt-br.facebook.com/" target="_blank"><i class="fa-brands fa-facebook blue"></i></a>
+                <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube red"></i></a>
+            </div>
+
+        </div>
+    </footer>
+</body>
+
+</html>
+
