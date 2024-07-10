@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrastar, soltar, ligar</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+
+      #canvas {
+        width: 500px;
+        height: 300px;
+        border: 2px solid #ccc;
+        margin: 20px 20px;
+        position: relative;
+      }
+
+      .draggable {
+        width: 100px;
+        height: 100px;
+        color: white;
+        text-align: center;
+        line-height: 100px;
+        position: absolute;
+        cursor: grab;
+      }
+
+      .blue {
+        background-color: #3498db;
+      }
+
+      .line {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 2px;
+        background-color: black;
+        z-index: 3;
+        transform-origin: 0;
+      }
+
+      .stacked {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #324755;
+        z-index: 3;
+        animation: pop 0.1s forwards;
+      }
+
+      .topBox {
+        z-index: 2;
+      }
+
+      @keyframes pop {
+        from {
+          width: 0px;
+          height: 0px;
+        }
+        to {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .green {
+        background-color: #2ecc71;
+      }
+
+      .selected {
+        box-shadow: 1px 1px 5px rgba(43, 43, 43, 0.979);
+        z-index: 3;
+      }
+
+      .dragging {
+        cursor: grabbing;
+      }
+
+      .help-text {
+        width: 500px;
+        margin-left: 20px;
+        text-align: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="canvas">
+      <div class="draggable blue topBox">
+        <div class="line"></div>
+      </div>
+      <div class="draggable green" style="top: 120px; left: 120px"></div>
+    </div>
+
+    <script>
+      const blueBox = document.querySelector(".blue");
+      const greenBox = document.querySelector(".green");
+      const draggable = document.querySelectorAll(".draggable");
+      const canvas = document.querySelector("#canvas");
+      const line = document.querySelector(".line");
+
+      console.log(draggable);
+
+      let startMouseX = 0;
+      let startMouseY = 0;
+      let offsetX = 0;
+      let offsetY = 0;
+      let dragging = false;
+
+      let boxConnectTextEl = document.createElement("p");
+      boxConnectTextEl.innerHTML =
+        "Clique na outra caixa para criar um <strong>vínculo</strong> entre as duas";
+      document.body.appendChild(boxConnectTextEl);
+      boxConnectTextEl.classList.add("help-text", "hidden");
+
+      let currentBox;
+      let secondaryBox;
+      let connecting = false;
+
+      let clearConnectionEvent = () => {
+            // Remove "connecting" effects
+            boxConnectTextEl.classList.add("hidden");
+            box.classList.remove("selected");
+            secondaryBox.onmousedown = null; // Remove event listener
+            connecting = false; // Toggle state
+      };
+
+      const stackIcon = document.createElement("div");
+      stackIcon.classList.add("stacked");
+      let stacked = false;
+
+      draggable.forEach((box) => {
+        box.onmousedown = (event) => {
+          startMouseX = event.clientX;
+          startMouseY = event.clientY;
+          offsetX = startMouseX - box.offsetLeft;
+          offsetY = startMouseY - box.offsetTop;
+
+          console.log(`
+          Mouse click on:             ${event.clientY},
+          Box offset Y is:            ${box.offsetTop},
+          The calculated position is: ${offsetY}
+          `);
+
+          currentBox = box;
+
+          dragging = true;
+          currentBox.classList.add("selected", "topBox", "dragging");
+
+          draggable.forEach((box) => {
+            if (currentBox !== box) {
+              secondaryBox = box;
+              box.classList.remove("topBox");
+            }
+          });
+        };
+
+        box.ondblclick = (event) => {
+          if (!connecting) {
+            // Apply "connecting" effects
+            boxConnectTextEl.classList.remove("hidden");
+            box.classList.add("selected");
+            secondaryBox.onmousedown = (event) => {
+              console.log("selected");
+              secondaryBox.classList.add("selected");
+            };
+            connecting = true; // Toggle state
+          } else {
+            clearConnectionEvent();
+          }
+
+          document.onclick = (event) => {
+            if(event.target !== box) {
+              clearConnectionEvent();
+            }
+          }
+        };
+      });
+
+      document.onmousemove = (event) => {
+        let mouseMoveX = event.clientX - offsetX;
+        let mouseMoveY = event.clientY - offsetY;
+
+        if (dragging) {
+          clearConnectionEvent();
+          currentBox.style.left = mouseMoveX + "px";
+          currentBox.style.top = mouseMoveY + "px";
+
+          checkStack();
+        }
+      };
+
+      document.onmouseup = (event) => {
+        if (dragging) {
+          let canvasBounds = canvas.getBoundingClientRect();
+
+          let leftBound = canvasBounds.width - currentBox.offsetWidth - 3;
+
+          let topBound = canvasBounds.height - currentBox.offsetHeight - 3;
+
+          console.log(topBound);
+
+          if (currentBox.offsetLeft < 0) {
+            currentBox.style.left = "0px";
+          } else if (currentBox.offsetLeft > leftBound) {
+            currentBox.style.left = leftBound + "px";
+          }
+
+          if (currentBox.offsetTop < 0) {
+            currentBox.style.top = "0px";
+          } else if (currentBox.offsetTop > topBound) {
+            currentBox.style.top = topBound + "px";
+          }
+
+          dragging = false;
+          // offsetX = event.clientX;
+          // offsetY = event.clientY;
+          currentBox.classList.remove("selected", "dragging");
+
+          checkStack();
+        }
+      };
+
+      stackIcon.onclick = (event) => {
+        draggable.forEach((box) => {
+          box.classList.toggle("topBox");
+        });
+      };
+
+      const checkStack = () => {
+        difOffsetX = Math.abs(blueBox.offsetLeft - greenBox.offsetLeft);
+        difOffsetY = Math.abs(blueBox.offsetTop - greenBox.offsetTop);
+
+        // compara caixaAtual com outra caixa
+        if (difOffsetX < 8 && difOffsetY < 8) {
+          if (!stacked) {
+            stacked = true;
+            secondaryBox.appendChild(stackIcon);
+            stackIcon.style.left = currentBox.offsetWidth + 10 + "px";
+          }
+        } else {
+          stackIcon.remove();
+          stacked = false;
+        }
+      };
+    </script>
+  </body>
+</html>

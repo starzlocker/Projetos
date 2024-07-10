@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="blue" style="position:absolute;width:200px;height:200px;background-color:blue"></div>
+    <script>
+let box = document.querySelector(".blue");
+        let startX, startY, offsetX, offsetY = 0;
+        let dragging = false;
+
+        document.onmouseup = function(event) {
+            dragging = false;
+        }
+
+        box.onmousedown = function(event) {
+            dragging = true;
+            startX = event.clientX;
+            startY = event.clientY;
+            offsetX = startX - box.getBoundingClientRect().left;
+            offsetY = startY - box.getBoundingClientRect().top;
+        }
+
+        document.onmousemove = function(event) {
+            if(dragging) {
+                // let moveX = event.clientX - offsetX;
+                // let moveY = event.clientY - offsetY;
+                let moveX = event.clientX;
+                let moveY = event.clientY;
+                box.style.left = moveX + 'px';
+                box.style.top = moveY + 'px';
+            }
+        }
+    </script>
+</body>
+</html>
